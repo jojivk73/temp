@@ -5,13 +5,18 @@
 //########################################################
 #define ABCD
 
+//########################################################
+// template to cover data
+//########################################################
 template <bool VER1=true> struct CType {
    int a;
    float b;
 };
 
+//########################################################
 // 1.Specialization for Class/struct based on template argument
 //   if one class/struct has more data or fns.
+//########################################################
 template <> struct CType<true> {
   int a;
   float b;
@@ -21,7 +26,9 @@ template <> struct CType<true> {
 };
 
 
+//########################################################
 //2. Use namespace for each version
+//########################################################
 namespace V1 {
    typedef CType<true> CT;
    static std::ostream &mout=std::cout;
@@ -37,6 +44,9 @@ namespace V1 {
    inline void showC(CT & ct) { mout<<ct.c<<std::endl; }
    void whereAreYou() {mout<<" In V1...!"<<std::endl; }
 }
+//########################################################
+// Scond namespace for new version
+//########################################################
 namespace V2 {
    typedef CType<false> CT;
    static std::ostream &mout=std::cerr;
@@ -53,14 +63,18 @@ namespace V2 {
    void whereAreYou() {mout<<" In V2...!"<<std::endl; }
 }
 
+//########################################################
 // 5. Single ifdef
+//########################################################
 #ifdef ABCD
   using namespace V1;
 #else
   using namespace V2;
 #endif
-//########################################################
 
+//########################################################
+// Main uses the enabled version
+//########################################################
 int main()
 {
   CT ct;
