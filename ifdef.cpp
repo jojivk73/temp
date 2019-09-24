@@ -5,7 +5,7 @@
 #define ABCD
 
 //--------------------------------------------------------
-// template to cover data
+// To cover data/objects that may be version specific
 //--------------------------------------------------------
 template <bool VER1=true> struct CType {
    int a;
